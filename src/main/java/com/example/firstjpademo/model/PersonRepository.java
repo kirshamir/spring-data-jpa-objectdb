@@ -23,4 +23,11 @@ public interface PersonRepository
     @Query("Select p from Person p WHERE YEAR(p.birthDate) = :year")
     List<Person> findAllByBirthDateYear(int year);
 
+    @Query("Select p.name from Person p")
+    List<String> findAllNames();
+
+    @Query("Select new com.example.firstjpademo.model.PersonInfo(p.id, p.name) from Person p")
+    List<PersonInfo> findAllNamesAndIds();
+
+    List<PersonInfo> findAllPersonInfoByGender(Person.Gender g);
 }
