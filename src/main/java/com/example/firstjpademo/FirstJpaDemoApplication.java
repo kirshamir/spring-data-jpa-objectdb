@@ -2,6 +2,8 @@ package com.example.firstjpademo;
 
 import com.example.firstjpademo.model.Person;
 import static com.example.firstjpademo.model.Person.Gender;
+
+import com.example.firstjpademo.model.PersonInfo;
 import com.example.firstjpademo.model.PersonRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +20,7 @@ import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Properties;
 
 @SpringBootApplication
 public class FirstJpaDemoApplication {
@@ -28,6 +31,9 @@ public class FirstJpaDemoApplication {
 
 	@Bean(name="entityManagerFactory")
 	public EntityManagerFactory getEntityManagerFactoryBean() {
+//		Properties properties = new Properties();
+//		properties.put("spring.jpa.show-sql", true);
+//		return Persistence.createEntityManagerFactory("spring-data-jpa-test.odb", properties);
 		return Persistence.createEntityManagerFactory("spring-data-jpa-test.odb");
 	}
 
@@ -88,6 +94,22 @@ public class FirstJpaDemoApplication {
 			)) {
 				System.out.println(p);
 			}
+
+			System.out.println("findAll names:");
+			for (String name : repository.findAllNames()) {
+				System.out.println(name);
+			}
+
+			System.out.println("findAll names and ids:");
+			for (PersonInfo p : repository.findAllNamesAndIds()) {
+				System.out.println(p);
+			}
+
+			// below doesn't work with ObjectDB
+//			System.out.println("findAll names and ids by gender:");
+//			for (PersonInfo p : repository.findAllPersonInfoByGender(Gender.MALE)) {
+//				System.out.println(p);
+//			}
 		};
 	}
 
