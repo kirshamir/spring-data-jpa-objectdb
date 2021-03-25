@@ -31,9 +31,6 @@ public class FirstJpaDemoApplication {
 
 	@Bean(name="entityManagerFactory")
 	public EntityManagerFactory getEntityManagerFactoryBean() {
-//		Properties properties = new Properties();
-//		properties.put("spring.jpa.show-sql", true);
-//		return Persistence.createEntityManagerFactory("spring-data-jpa-test.odb", properties);
 		return Persistence.createEntityManagerFactory("spring-data-jpa-test.odb");
 	}
 
@@ -105,12 +102,10 @@ public class FirstJpaDemoApplication {
 				System.out.println(p);
 			}
 
-			// below doesn't work with ObjectDB
-//			System.out.println("findAll names and ids by gender:");
-//			for (PersonInfo p : repository.findAllPersonInfoByGender(Gender.MALE)) {
-//				System.out.println(p);
-//			}
+			System.out.println("findAll names and ids by gender:");
+			for (PersonInfo p : repository.findAllPersonInfoByGender(Gender.MALE)) {
+				System.out.println(p);
+			}
 		};
 	}
-
 }
