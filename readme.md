@@ -1,1 +1,1 @@
-Welcome to a simple Spring Data JPA example
+A spring-data-jpa example using objectdb
